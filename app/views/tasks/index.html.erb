@@ -3,8 +3,9 @@
   
   <% @tasks.each do |task|%>
   <p>
-    <%= link_to task.id,task_path(task) %>   
-    <%= task.content %>
+    <%= link_to task.id,task_path(task) %>:
+    <%= task.content %>:
+    <%= task.status %>
   </p>
   <%end%>
   
