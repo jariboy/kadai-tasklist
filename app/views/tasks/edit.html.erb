@@ -1,16 +1,20 @@
-<div style="text-align:center;">
-  <h1>タスク編集フォーム</h1>
-  <%= form_for(@task) do |f| %>
-  
-  <div class="form-group">
-  <%= f.label :content,"タスク" %>
-  <%= f.text_field :content %>
+<div class="row">
+  <div class="col-xs-12 col-sm-offset-2 col-sm8 col-md-offset-2 col-md-8 col-lg-offset-3 col-lg-6">
+      <h1>タスク編集フォーム</h1>
+      <%= form_for(@task) do |f| %>
+      
+          <div class="form-group">
+            <%= f.label :content,"タスク" %>
+            <%= f.text_field :content %>
+          </div>
+    
+          <div class="form-group">
+            <%= f.label :status,"ステータス" %>
+            <%= f.text_field :status %>
+          </div>
+      
+      <%= f.submit "投稿" ,class: "btn btn-primary"%>
+      <%end%>
+      <%= link_to "タスク一覧に戻る", tasks_path%>
   </div>
-  <div class="form-group">
-  <%= f.label :status,"ステータス" %>
-  <%= f.text_field :status %>
-  </div>
-  <%= f.submit "投稿" ,class: "btn btn-primary"%>
-  <%end%>
-  <%= link_to "タスク一覧に戻る", tasks_path%>
 </div>
