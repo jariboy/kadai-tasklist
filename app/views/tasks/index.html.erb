@@ -1,13 +1,17 @@
-<div style="text-align:center;">
-  <h1>黒田専用課題リスト</h1>
-  
-  <% @tasks.each do |task|%>
-  <p>
-    <%= link_to task.id,task_path(task) %>:
-    <%= task.content %>:
-    <%= task.status %>
-  </p>
-  <%end%>
-  
+<ul class="media-list">
+  <% @tasks.each do |task| %>
+    <% user = task.user %>
+    <li class="media">
+      <div class="media-body">
+        <div>
+          <p>
+          <%= link_to task.id,task_path(task) %>
+          <%= task.content %>
+          <%= task.status %>
+          </p>
+        </div>
+      </div>
+    </li>
+  <% end %>
   <p><%= link_to "新規タスクを作成する" ,new_task_path %></p>
-</div>
+</ul>

@@ -8,20 +8,19 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/">MessageBoard</a>
+        <a class="navbar-brand" href="/tasks">タスク管理</a>
       </div>
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
         <% if logged_in? %>
           <li><%= link_to 'My profile', user_path(current_user) %></li>
           <li><%= link_to 'Logout', logout_path, method: :delete %></li>
-          <li><%= link_to  '新タスクの投稿', new_task_path %></li>
-          <li><%= link_to  'タスクの確認', new_task_path %></li>
+          <li><%= link_to 'タスクの確認', tasks_path %></li>
         <%else%>
           <li><%= link_to "Sign up", signup_path%></li>
           <li><%= link_to 'Login', login_path %></li>
         <%end%>
-        </ul>
+        </ul>class="navbar-brand"
       </div>
     </div>
   </nav>

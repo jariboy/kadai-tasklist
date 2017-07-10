@@ -1,6 +1,14 @@
 class TasksController < ApplicationController
+  before_action :require_user_logged_in
+
+  include SessionsHelper
+  
   def index
-    @tasks = Task.all
+    if logged_in?
+      @user = current_user
+      @task = current_user.tasks.build
+      @tasks = current_user.tasks.order('created_at DESC').page(params[:page])
+    end
   end
 
   def show
@@ -8,11 +16,11 @@ class TasksController < ApplicationController
   end
 
   def new
-    @task = Task.new
+    @task = current_user.tasks.new
   end
 
   def create
-    @task = Task.new(task_params)
+    @task = current_user.tasks.new(task_params)
     
     if @task.save
       flash[:success] = 'Message が正常に投稿されました'
@@ -24,11 +32,11 @@ class TasksController < ApplicationController
   end
 
   def edit
-    @task = Task.find(params[:id])
+    @task = current_user.tasks.find(params[:id])
   end
 
   def update
-    @task = Task.find(params[:id])
+    @task = current_user.tasks.find(params[:id])
 
     if @task.update(task_params)
       flash[:success] = 'Message は正常に更新されました'
@@ -40,7 +48,7 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    @task = Task.find(params[:id])
+    @task = current_user.tasks.find(params[:id])
     @task.destroy
     
     flash[:success] = 'Message は正常に削除されました'
@@ -49,7 +57,6 @@ class TasksController < ApplicationController
 
   private
 
-  # Strong Parameter
   def task_params
     params.require(:task).permit(:content,:status)
   end
