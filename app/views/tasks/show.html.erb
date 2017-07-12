@@ -1,3 +1,8 @@
+<% unless @task.user == current_user %>
+  <p>ここはあなたのページではありません。</p>
+  <p><%= link_to "タスク一覧へ戻る" ,tasks_path %></p>
+  
+<% else %>
 <div style="text-align:center;">
   <h1><%= @task.id %>の詳細</h1>
   <p><%= @task.content %>:<%= @task.status %></p>
@@ -6,3 +11,4 @@
   <p><%= link_to 'このメッセージを削除する', @task, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %></p>
 
 </div>
+<% end %>
