@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   before_action :require_user_logged_in
-  before_action :correct_task
+  before_action :correct_task, only: [:show,:edit, :update, :destroy]
 
   include SessionsHelper
   
@@ -33,7 +33,7 @@ class TasksController < ApplicationController
   end
 
   def edit
-    @task = Task.find(params[:id])
+    @task = current_user.tasks.find(params[:id])
   end
 
   def update
