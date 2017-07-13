@@ -16,9 +16,16 @@ class ApplicationController < ActionController::Base
     redirect_to(root_url) unless @user == current_user
   end
 
+  # def correct_task   戒め
+  #   @task = Task.find(params[:id])
+  #   redirect_to(root_url) unless @task == current_user.tasks
+  # end
+  
   def correct_task
-    @task = Task.find(params[:id])
-    redirect_to(root_url) unless @task == current_user.task
-  end
+    @task = current_user.tasks.find_by(id: params[:id])
+    unless @task
+      redirect_to root_url
+    end
+  end 
 
 end
